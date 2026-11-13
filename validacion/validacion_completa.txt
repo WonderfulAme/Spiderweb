@@ -1,0 +1,60 @@
+VALIDACIÓN DEL CÓDIGO FINAL
+===========================
+
+element_stiffness
+  relative_error: 0.0
+  passed: True
+
+analytical_string_benchmark
+  max_relative_error: 1.0472871248204473e-14
+  first_frequency_numeric_Hz: 338.62625298985876
+  first_frequency_exact_Hz: 338.6262529898623
+  passed: True
+
+transverse_tension_scaling
+  tension_factor: 4.0
+  expected_frequency_factor: 2.0
+  measured_frequency_factor_mean: 2.0
+  max_relative_error: 0.0
+  passed: True
+
+silk_density_scaling
+  density_factor: 4.0
+  expected_frequency_factor: 0.5
+  measured_frequency_factor_mean: 0.5
+  max_relative_error: 0.0
+  passed: True
+
+documented_base_parameters
+  checked_parameters: 11
+  max_relative_difference: 0.0
+  passed: True
+
+modal_vs_direct
+  relative_error: 1.2551457877367586e-10
+  passed: True
+
+energy_and_completeness
+  initial_velocity_relative_error: 2.4652521016804335e-15
+  energy_relative_variation: 0.0
+  passed: True
+
+duhamel_impulse
+  relative_error: 5.033804579838668e-16
+  passed: True
+
+transfer_function
+  static_limit_relative_error: 6.709434513348044e-16
+  reciprocity_relative_error: 1.0730947496586006e-16
+  passed: True
+
+frequency_grid_convergence
+  relative_change: 2.345623596558293e-05
+  passed: True
+
+geometry_base_reproduction
+  relative_error_f1_NM: 0.0
+  relative_error_f1_spacing: 6.042449517793098e-11
+  passed: True
+
+RESULTADO GLOBAL: TODAS LAS PRUEBAS PASARON

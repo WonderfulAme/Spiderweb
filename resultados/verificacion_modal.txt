@@ -1,0 +1,17 @@
+VERIFICACIÓN DEL ANÁLISIS MODAL
+================================
+Acoplamiento X/Y-Z absoluto : 0.000000e+00
+Acoplamiento X/Y-Z relativo : 0.000000e+00
+
+TRANSVERSALES Z
+Modos verificados            : 12
+Residuo relativo máximo      : 6.043078e-11
+Error ortogonalidad Phi^T M Phi: 4.440892e-16
+Error diagonalización Phi^T K Phi: 4.079876e-14
+
+EN EL PLANO X-Y
+Modos verificados            : 12
+Residuo relativo máximo      : 8.255553e-10
+Error ortogonalidad Phi^T M Phi: 4.706928e-16
+Error diagonalización Phi^T K Phi: 8.242789e-11
+

@@ -1,0 +1,107 @@
+\begin{thebibliography}{10}
+\newcommand{\enquote}[1]{``#1''}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{[Online]. Available: \discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+
+\bibitem{masters1981}
+W.~M. Masters and H.~Markl, \enquote{Vibration signal transmission in spider
+  orb webs,} \emph{Science}, vol. 213, no. 4505, pp. 363--365 (1981),
+  \doi{10.1126/science.213.4505.363}.
+
+\bibitem{mortimer2016}
+B.~Mortimer, A.~Soler, C.~R. Siviour, R.~Zaera, and F.~Vollrath,
+  \enquote{Tuning the instrument: sonic properties in the spider's web,}
+  \emph{Journal of the Royal Society Interface}, vol.~13, no. 122, p. 20160341
+  (2016), \doi{10.1098/rsif.2016.0341}.
+
+\bibitem{mortimer2019decoding}
+B.~Mortimer, L.~Nohl, S.~P. Sane, D.~Robert, and F.~Vollrath, \enquote{Decoding
+  the locational information in the orb web vibrations of \textit{{Araneus}
+  diadematus} and \textit{{Zygiella} x-notata},} \emph{Journal of The Royal
+  Society Interface}, vol.~16, no. 154, p. 20190201 (2019),
+  \doi{10.1098/rsif.2019.0201}.
+
+\bibitem{nakata2010}
+K.~Nakata, \enquote{Attention focusing in a sit-and-wait forager: a spider
+  controls its prey-detection ability in different web sectors by adjusting
+  thread tension,} \emph{Proceedings of the Royal Society B}, vol. 277, no.
+  1678, pp. 29--33 (2010), \doi{10.1098/rspb.2009.1583}.
+
+\bibitem{frohlich1982}
+C.~Frohlich and R.~E. Buskirk, \enquote{Transmission and Attenuation of
+  Vibration in Orb Spider Webs,} \emph{Journal of Theoretical Biology},
+  vol.~95, no.~1, pp. 13--36 (1982).
+
+\bibitem{landolfa1996}
+M.~A. Landolfa and F.~G. Barth, \enquote{Vibrations in the orb web of the
+  spider \textit{Nephila clavipes}: cues for discrimination and orientation,}
+  \emph{Journal of Comparative Physiology A}, vol. 179, pp. 493--508 (1996),
+  \doi{10.1007/BF00192316}.
+
+\bibitem{wirth1992}
+E.~Wirth and F.~G. Barth, \enquote{Forces in the spider orb web,} \emph{Journal
+  of Comparative Physiology A}, vol. 171, pp. 359--371 (1992),
+  \doi{10.1007/BF00223966}.
+
+\bibitem{aoyanagi2010}
+Y.~Aoyanagi and K.~Okumura, \enquote{Simple Model for the Mechanics of Spider
+  Webs,} \emph{Physical Review Letters}, vol. 104, no.~3, p. 038102 (2010),
+  \doi{10.1103/PhysRevLett.104.038102}.
+
+\bibitem{lott2022}
+M.~Lott, V.~F. Dal~Poggetto, G.~Greco, N.~M. Pugno, and F.~Bosia, \enquote{Prey
+  localization in spider orb webs using modal vibration analysis,}
+  \emph{Scientific Reports}, vol.~12, p. 19045 (2022),
+  \doi{10.1038/s41598-022-22898-3}.
+
+\bibitem{yavuz2024}
+K.~Yavuz, A.~M. Soler, R.~Zaera, and S.~Jahangirov, \enquote{Effect of spider's
+  weight on signal transmittance in vertical orb webs,} \emph{Royal Society
+  Open Science}, vol.~11, p. 240986 (2024), \doi{10.1098/rsos.240986}.
+
+\bibitem{goldstein2002}
+H.~Goldstein, C.~Poole, and J.~Safko, \emph{Classical Mechanics} (Addison
+  Wesley,  (2002), 3rd ed.
+
+\bibitem{meirovitch2001}
+L.~Meirovitch, \emph{Fundamentals of Vibrations} (McGraw-Hill,  (2001).
+
+\bibitem{inman2014}
+D.~J. Inman, \emph{Engineering Vibration} (Pearson,  (2014), 4th ed.
+
+\bibitem{ewins2000}
+D.~J. Ewins, \emph{Modal Testing: Theory, Practice and Application} (Research
+  Studies Press, Baldock, UK, 2000), 2nd ed.
+
+\bibitem{adwAraneus}
+{Animal Diversity Web, University of Michigan Museum of Zoology},
+  \enquote{\textit{Araneus diadematus}: Cross Orbweaver,}
+  \url{https://animaldiversity.org/accounts/Araneus_diadematus/} (consultado el
+  28 sep. 2026).
+
+\bibitem{stauffer1994}
+S.~L. Stauffer, S.~L. Coguill, and R.~V. Lewis, \enquote{Comparison of physical
+  properties of three silks from \textit{Nephila clavipes} and \textit{Araneus
+  gemmoides},} \emph{Journal of Arachnology}, vol.~22, pp. 5--11 (1994).
+
+\bibitem{gosline1999}
+J.~M. Gosline, P.~A. Guerette, C.~S. Ortlepp, and K.~N. Savage, \enquote{The
+  mechanical design of spider silks: from fibroin sequence to mechanical
+  function,} \emph{Journal of Experimental Biology}, vol. 202, no.~23, pp.
+  3295--3303 (1999), \doi{10.1242/jeb.202.23.3295}.
+
+\bibitem{mortimer2018}
+B.~Mortimer, A.~Soler, C.~R. Siviour, and F.~Vollrath, \enquote{Remote
+  monitoring of vibrational information in spider webs,} \emph{The Science of
+  Nature}, vol. 105, p.~37 (2018).
+
+\bibitem{linsobek1998}
+L.~H. Lin and W.~Sobek, \enquote{Structural hierarchy in spider webs and
+  spiderweb-type systems,} \emph{The Structural Engineer}, vol.~76, pp. 59--64
+  (1998).
+
+\end{thebibliography}

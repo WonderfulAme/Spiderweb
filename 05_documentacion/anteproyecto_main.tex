@@ -1,0 +1,716 @@
+\documentclass[11pt,letterpaper]{article}
+
+% PAGE FORMAT
+\usepackage[
+    letterpaper,
+    top=3cm,
+    botom=3cm,
+    left=2cm,
+    right=2cm
+]{geometry}
+
+% ENCODING AND TYPOGRAPHY
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{parskip}
+
+% MATHEMATICS
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+% Tables
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage[table]{xcolor}
+\usepackage{multirow}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+% FIGURES AND ALGORITHMS
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+% BIBLIOGRAPHY
+\usepackage[
+    backend=biber,
+    style=ieee
+]{biblatex}
+\addbibresource{references.bib}
+\addbibresource{references_modelo.bib}
+
+\usepackage{hyperref}
+
+% ---- colores del cronograma ----
+\definecolor{c1fill}{RGB}{232,230,252}
+\definecolor{c1acc}{RGB}{83,74,183}
+\definecolor{c2fill}{RGB}{220,245,235}
+\definecolor{c2acc}{RGB}{15,110,86}
+\definecolor{c3fill}{RGB}{220,234,248}
+\definecolor{c3acc}{RGB}{24,95,165}
+\definecolor{c4fill}{RGB}{254,242,220}
+\definecolor{c4acc}{RGB}{133,79,11}
+\definecolor{entfill}{RGB}{253,235,235}
+\definecolor{entacc}{RGB}{163,45,45}
+\definecolor{headbg}{RGB}{45,45,50}
+
+% TITLE
+\title{
+    \textbf{\LARGE Anteproyecto: Influencia de la Configuración Geométrica
+    de una Telaraña Orbicular en su Dinámica Vibratoria
+    Mediante un Modelo de Mecánica Analítica}
+}
+\author{
+    Amelia Hoyos Vélez,
+    Nicolle Rodríguez Estupiñán,
+    Miguel Ángel León Botero\\[0.3cm]
+    \small Ingeniería Física,
+    Escuela de Ciencias e Ingeniería,
+    Universidad EAFIT
+}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+
+\section{Justificación}
+
+Las arañas orbitelas construyen estructuras cuya geometría no es azarosa:
+el número de hilos radiales, el espaciado entre los anillos espirales y la
+tensión impuesta en cada elemento son parámetros que la araña puede modificar
+activamente \cite{mortimer2016,mortimer2019}. Esta capacidad sugiere que la
+arquitectura de la red cumple una función sensorial específica, pues la araña
+detecta posición, dirección y magnitud de perturbaciones externas a través de
+los patrones vibratorios que se propagan por los hilos hasta sus patas
+\cite{masters1981,mortimer2019}. Sin embargo, no toda configuración geométrica
+favorece la transmisión de información relevante: una red inadecuada puede
+atenuar señales de presa y amplificar ruido ambiental ---viento, contacto con
+hojas--- comprometiendo la capacidad de caza \cite{mortimer2016,nakata2010}.
+
+Esto plantea una pregunta fundamental de mecánica estructural aplicada a
+sistemas biológicos:
+
+\medskip
+\begin{center}
+\textit{¿Cómo determina la configuración geométrica de una telaraña orbicular
+las propiedades vibratorias de la estructura y la forma en que una perturbación
+mecánica se transmite entre sus nodos?}
+\end{center}
+\medskip
+
+Responder esta pregunta requiere un modelo dinámico que relacione
+explícitamente los parámetros geométricos de la red con su espectro de
+frecuencias naturales, sus modos de vibración y su respuesta temporal ante
+perturbaciones. El formalismo lagrangiano ofrece el marco adecuado para
+construir dicho modelo de manera sistemática.
+
+\section{Objetivo General}
+Analizar la influencia de la configuración geométrica de una telaraña orbicular en su dinámica vibratoria, mediante el modelado del sistema y el estudio de su respuesta ante perturbaciones mecánicas, con el fin de determinar cómo la distribución de sus nodos e hilos, así como la tensión generada entre ellos, afectan las propiedades dinámicas de la estructura.
+
+\section{Objetivos Específicos}
+\begin{itemize}
+    \item Modelar la dinámica de una telaraña orbicular considerando su distribución geométrica, mediante la formulación de las ecuaciones de movimiento del sistema a partir de la mecánica analítica para establecer las bases matemáticas de su análisis vibratorio.
+
+    \item Caracterizar el comportamiento vibratorio del sistema ante una perturbación mecánica mediante el análisis de sus frecuencias naturales, modos normales y respuesta dinámica, para determinar cómo se transmite la perturbación a través de la estructura.
+
+    \item Simular numéricamente la respuesta vibratoria de la telaraña ante diferentes configuraciones geométricas y perturbaciones mecánicas, para contrastar los resultados obtenidos con el análisis teórico.
+\end{itemize}
+
+\section{Planteamiento del Problema}
+
+ 
+
+\subsection{Geometría de la red y posición de equilibrio}
+
+Se considera una telaraña orbicular tridimensional compuesta por $N$ hilos
+radiales y $M$ anillos espirales \cite{aoyanagi2010,lott2022}. En equilibrio,
+la telaraña yace en el plano $z=0$. Los nodos de la red se etiquetan con el
+par de índices $(n,\,m)$, donde
+
+\begin{equation}
+    n = 0, 1, \dots, N-1 \quad \text{(índice radial)}, \qquad
+    m = 0, 1, \dots, M \quad \text{(índice de anillo)}.
+\end{equation}
+
+El caso $m = 0$ corresponde al nodo central, que se supone fijo
+($\mathbf{X}^0_{n,0} = \mathbf{0}$,
+$\mathbf{u}_{n,0} \equiv \mathbf{0}$ para todo $n$). Los nodos del borde
+exterior ($m = M$) son libres. Para $m \geq 1$, la posición de equilibrio
+del nodo $(n,m)$ es
+
+\begin{equation}\label{eq:equil}
+    \mathbf{X}^{0}_{n,m}
+    = \begin{pmatrix} r_m\cos\theta_n \\ r_m\sin\theta_n \\ 0
+      \end{pmatrix},
+    \qquad \theta_n = \frac{2\pi n}{N},
+\end{equation}
+
+donde $r_m > 0$ es el radio del $m$-ésimo anillo, con
+$r_1 < r_2 < \cdots < r_M$.
+
+\subsection{Desplazamientos y coordenadas generalizadas}
+
+Ante una perturbación, cada nodo libre $(n,m)$ se desplaza en las tres
+direcciones espaciales. Se define el vector de desplazamiento
+
+\begin{equation}\label{eq:despl}
+    \mathbf{u}_{n,m}(t)
+    = \mathbf{x}_{n,m}(t) - \mathbf{X}^{0}_{n,m}
+    = \begin{pmatrix} u^x_{n,m}(t) \\ u^y_{n,m}(t) \\ u^z_{n,m}(t)
+      \end{pmatrix} \in \mathbb{R}^3,
+\end{equation}
+
+donde $(u^x_{n,m},\, u^y_{n,m})$ son los desplazamientos en el plano
+(modos longitudinales) y $u^z_{n,m}$ es el desplazamiento transversal
+(modos fuera del plano). Reuniendo todos los desplazamientos en un único
+vector de estado, ordenado primero por anillo y luego por radio,
+
+\begin{equation}\label{eq:q}
+    \mathbf{q}(t)
+    = \bigl(
+        \mathbf{u}_{0,1}^\top,\,
+        \mathbf{u}_{1,1}^\top,\,\dots,\,
+        \mathbf{u}_{N-1,1}^\top,\;\dots,\;
+        \mathbf{u}_{0,M}^\top,\,\dots,\,
+        \mathbf{u}_{N-1,M}^\top
+      \bigr)^\top
+    \in \mathbb{R}^{3NM}.
+\end{equation}
+
+El sistema tiene $3NM$ grados de libertad activos.
+
+\subsection{Conectividad de la red}
+
+La red presenta dos tipos de hilo, cada uno caracterizado por su constante
+elástica y su tensión inicial (pretensión) \cite{aoyanagi2010,soler2016}:
+
+\begin{itemize}
+    \item \emph{Hilo radial} $(n,m)$: conecta el nodo $(n,m-1)$ con el
+    nodo $(n,m)$, con constante elástica $K_m > 0$ y pretensión
+    $T^R_m > 0$.
+    \item \emph{Hilo espiral} $(n,m)$: conecta el nodo $(n-1,\,m)$ con el
+    nodo $(n,m)$, con constante elástica $k_m > 0$ y pretensión
+    $T^S_m > 0$ (índice $n$ en módulo $N$).
+\end{itemize}
+
+Para un hilo genérico que une los nodos $i$ y $j$, se definen la longitud
+de equilibrio y el vector unitario de equilibrio:
+
+\begin{equation}\label{eq:L0}
+    L^0_{ij} = \lVert \mathbf{X}^0_i - \mathbf{X}^0_j \rVert,
+    \qquad
+    \hat{\mathbf{e}}^0_{ij}
+    = \frac{\mathbf{X}^0_i - \mathbf{X}^0_j}{L^0_{ij}}
+    \in \mathbb{R}^3.
+\end{equation}
+
+\subsection{Energía cinética}
+
+Modelando la masa de los hilos como concentrada en los nodos \cite{meirovitch2001},
+la energía cinética del sistema es
+
+\begin{equation}\label{eq:T}
+    T = \frac{1}{2}
+        \sum_{n=0}^{N-1}\sum_{m=1}^{M}
+        \mu_{n,m}\,\dot{\mathbf{u}}_{n,m}^{\top}\dot{\mathbf{u}}_{n,m},
+\end{equation}
+
+donde $\mu_{n,m} > 0$ es la masa concentrada en el nodo $(n,m)$.
+
+\subsection{Elongación de un hilo y energía potencial}
+
+Cuando los nodos $i$ y $j$ se desplazan, la elongación del hilo que los
+une respecto a su longitud de equilibrio se aproxima, para desplazamientos
+pequeños ($\lVert\mathbf{u}_i - \mathbf{u}_j\rVert \ll L^0_{ij}$),
+mediante la proyección del desplazamiento relativo sobre el vector unitario
+de equilibrio \cite{goldstein2002,meirovitch2001}:
+
+\begin{equation}\label{eq:elong}
+    \Delta l_{ij}
+    = L_{ij} - L^0_{ij}
+    \approx \hat{\mathbf{e}}^0_{ij}\cdot(\mathbf{u}_i - \mathbf{u}_j).
+\end{equation}
+
+La energía potencial de cada hilo tiene dos contribuciones. La
+\emph{contribución elástica} proviene de la deformación axial:
+
+\begin{equation}\label{eq:Velast}
+    V^{\text{elás}}_{ij}
+    = \frac{1}{2}\kappa_{ij}(\Delta l_{ij})^2
+    = \frac{1}{2}\kappa_{ij}
+      \bigl[\hat{\mathbf{e}}^0_{ij}\cdot(\mathbf{u}_i-\mathbf{u}_j)\bigr]^2.
+\end{equation}
+
+La \emph{contribución geométrica} proviene de la pretensión $T^0_{ij}$:
+un hilo pretensado resiste el movimiento transversal a su eje incluso sin
+elongación neta \cite{jayaraman1981,wirth2011}. Expandiendo la longitud instantánea a segundo orden en
+el desplazamiento relativo $\boldsymbol{\delta}_{ij}=\mathbf{u}_i-\mathbf{u}_j$,
+
+\begin{equation}
+    L_{ij}
+    \approx L^0_{ij}
+    + \hat{\mathbf{e}}^0_{ij}\cdot\boldsymbol{\delta}_{ij}
+    + \frac{1}{2L^0_{ij}}
+      \Bigl[
+          \lVert\boldsymbol{\delta}_{ij}\rVert^2
+          - \bigl(\hat{\mathbf{e}}^0_{ij}\cdot\boldsymbol{\delta}_{ij}\bigr)^2
+      \Bigr],
+\end{equation}
+
+el término entre corchetes corresponde a la componente de
+$\boldsymbol{\delta}_{ij}$ perpendicular a $\hat{\mathbf{e}}^0_{ij}$,
+cuyo cuadrado genera la energía geométrica:
+
+\begin{equation}\label{eq:Vgeom}
+    V^{\text{geom}}_{ij}
+    = \frac{T^0_{ij}}{2L^0_{ij}}
+      \Bigl[
+          \lVert\boldsymbol{\delta}_{ij}\rVert^2
+          - \bigl(\hat{\mathbf{e}}^0_{ij}\cdot\boldsymbol{\delta}_{ij}\bigr)^2
+      \Bigr].
+\end{equation}
+
+Sumando ambas contribuciones sobre todos los hilos, la energía potencial
+total es
+
+\begin{equation}\label{eq:V}
+    V = \frac{1}{2}\sum_{(i,j)}
+    \left\{
+        \kappa_{ij}
+        \bigl[\hat{\mathbf{e}}^0_{ij}\cdot(\mathbf{u}_i-\mathbf{u}_j)\bigr]^2
+        +
+        \frac{T^0_{ij}}{L^0_{ij}}
+        \Bigl[
+            \lVert\mathbf{u}_i-\mathbf{u}_j\rVert^2
+            -\bigl(\hat{\mathbf{e}}^0_{ij}
+            \cdot(\mathbf{u}_i-\mathbf{u}_j)\bigr)^2
+        \Bigr]
+    \right\}.
+\end{equation}
+
+\subsection{Ecuaciones de movimiento}
+
+El lagrangiano del sistema es $\mathcal{L} = T - V$. Aplicando las
+ecuaciones de Euler--Lagrange a cada coordenada generalizada
+$\mathbf{u}_{n,m}$,
+
+\begin{equation}\label{eq:EL}
+    \frac{\mathrm{d}}{\mathrm{d}t}
+    \frac{\partial\mathcal{L}}{\partial\dot{\mathbf{u}}_{n,m}}
+    -
+    \frac{\partial\mathcal{L}}{\partial\mathbf{u}_{n,m}}
+    = \mathbf{0},
+\end{equation}
+
+se obtiene la ecuación de movimiento para cada nodo libre $(n,m)$:
+
+\begin{equation}\label{eq:eom_local}
+    \mu_{n,m}\,\ddot{\mathbf{u}}_{n,m}
+    =
+    -\sum_{j\in\mathcal{N}(n,m)}
+    \mathbf{k}^e_{(n,m),j}
+    \bigl(\mathbf{u}_{n,m} - \mathbf{u}_j\bigr),
+\end{equation}
+
+donde $\mathcal{N}(n,m)$ es el conjunto de nodos adyacentes a $(n,m)$ y
+$\mathbf{k}^e_{ij} \in \mathbb{R}^{3\times 3}$ es la \emph{matriz de
+rigidez elemental} del hilo $(i,j)$, obtenida al derivar la energía
+potencial \eqref{eq:V} \cite{jayaraman1981,meirovitch2001}:
+
+\begin{equation}\label{eq:ke}
+    \mathbf{k}^e_{ij}
+    =
+    \frac{T^0_{ij}}{L^0_{ij}}\,\mathbf{I}_3
+    +
+    \left(\kappa_{ij} - \frac{T^0_{ij}}{L^0_{ij}}\right)
+    \hat{\mathbf{e}}^0_{ij}\bigl(\hat{\mathbf{e}}^0_{ij}\bigr)^\top.
+\end{equation}
+
+El primer término de \eqref{eq:ke} es la \emph{rigidez geométrica},
+proporcional a la pretensión, que actúa isotrópicamente sobre las tres
+componentes del desplazamiento relativo, incluida la dirección transversal
+al plano. El segundo término es la \emph{rigidez elástica adicional},
+proyectada sobre la dirección axial del hilo. Sin pretensión
+($T^0_{ij}=0$), los modos transversales tendrían frecuencia nula; la
+pretensión los dota de frecuencias finitas determinadas por la relación
+$T^0_{ij}/L^0_{ij}$ \cite{lott2022,frohlich1982,wirth2011}.
+
+\subsection{Construcción de las matrices globales}
+
+Reuniendo las ecuaciones \eqref{eq:eom_local} para todos los nodos libres
+en el vector de estado $\mathbf{q}$ definido en \eqref{eq:q}, el sistema
+adopta la forma matricial
+
+\begin{equation}\label{eq:sistema}
+    \mathbf{M}\,\ddot{\mathbf{q}} + \mathbf{K}\,\mathbf{q} = \mathbf{f}(t),
+\end{equation}
+
+donde $\mathbf{f}(t) \in \mathbb{R}^{3NM}$ es el vector de forzamiento
+externo.
+
+\paragraph{Matriz de masa.}
+La energía cinética \eqref{eq:T} es diagonal en $\mathbf{q}$, por lo que
+$\mathbf{M}$ es una matriz diagonal de bloques $3\times 3$:
+
+\begin{equation}\label{eq:M}
+    \mathbf{M}
+    =
+    \mathrm{diag}\!\bigl(
+        \mu_{0,1}\mathbf{I}_3,\;
+        \mu_{1,1}\mathbf{I}_3,\;
+        \dots,\;
+        \mu_{N-1,M}\mathbf{I}_3
+    \bigr)
+    \in \mathbb{R}^{3NM\times 3NM}.
+\end{equation}
+
+\paragraph{Matriz de rigidez.}
+Cada hilo $(i,j)$ aporta a la rigidez global mediante el bloque de
+ensamblaje estándar \cite{meirovitch2001,jayaraman1981}
+
+\begin{equation}\label{eq:ensamble}
+    \Delta\mathbf{K}_{ij}
+    =
+    \begin{pmatrix}
+         \mathbf{k}^e_{ij} & -\mathbf{k}^e_{ij} \\
+        -\mathbf{k}^e_{ij} &  \mathbf{k}^e_{ij}
+    \end{pmatrix}
+    \in \mathbb{R}^{6\times 6},
+\end{equation}
+
+distribuido en las filas y columnas de $\mathbf{K}$ correspondientes a
+los grados de libertad de los nodos $i$ y $j$. Cuando uno de los nodos
+es el centro fijo, solo se ensambla el bloque $\mathbf{k}^e_{ij}$
+correspondiente al nodo libre. La matriz global resulta de sumar sobre
+todos los hilos:
+
+\begin{equation}\label{eq:K}
+    \mathbf{K}
+    =
+    \underbrace{
+        \sum_{n=0}^{N-1}\sum_{m=1}^{M}
+        \Delta\mathbf{K}^{R}_{(n,m-1),(n,m)}
+    }_{\text{hilos radiales}}
+    +
+    \underbrace{
+        \sum_{n=0}^{N-1}\sum_{m=1}^{M}
+        \Delta\mathbf{K}^{S}_{(n-1,m),(n,m)}
+    }_{\text{hilos espirales}},
+\end{equation}
+
+donde $\Delta\mathbf{K}^{R}$ usa $\kappa=K_m$, $T^0=T^R_m$ y
+$\hat{\mathbf{e}}^0=\hat{\mathbf{e}}^{R}_{n,m}$, mientras que
+$\Delta\mathbf{K}^{S}$ usa $\kappa=k_m$, $T^0=T^S_m$ y
+$\hat{\mathbf{e}}^0=\hat{\mathbf{e}}^{S}_{n,m}$. La matriz $\mathbf{K}$
+es simétrica, semidefinida positiva y rala de dimensión
+$3NM\times 3NM$.
+
+\subsection{Análisis modal}
+
+Las frecuencias naturales $\omega_k$ y los modos normales
+$\boldsymbol{\phi}_k$ se obtienen del problema de valores propios
+generalizado:
+
+\begin{equation}\label{eq:evp}
+    \mathbf{K}\,\boldsymbol{\phi}_k
+    = \omega_k^2\,\mathbf{M}\,\boldsymbol{\phi}_k,
+    \qquad k = 1, 2, \dots, 3NM.
+\end{equation}
+
+Los modos satisfacen la ortogonalidad $\mathbf{M}$-normalizada:
+
+\begin{equation}\label{eq:ortog}
+    \boldsymbol{\phi}_k^\top\mathbf{M}\,\boldsymbol{\phi}_l = \delta_{kl},
+    \qquad
+    \boldsymbol{\phi}_k^\top\mathbf{K}\,\boldsymbol{\phi}_l
+    = \omega_k^2\,\delta_{kl}.
+\end{equation}
+
+Los $3NM$ modos se separan naturalmente en dos familias: los \emph{modos
+en el plano} (componentes $u^x$, $u^y$ dominantes), controlados
+principalmente por las constantes elásticas $\kappa_{ij}$, y los
+\emph{modos transversales} (componente $u^z$ dominante), cuya frecuencia
+está determinada a orden dominante por el término de rigidez geométrica
+$T^0_{ij}/L^0_{ij}$ \cite{lott2022,mortimer2019decoding,frohlich1982}.
+
+\subsection{Respuesta temporal ante una perturbación}
+
+Cuando una perturbación puntual se aplica sobre el nodo $(n^*,m^*)$ en
+la dirección $\hat{\mathbf{d}}$, el vector de forzamiento es
+
+\begin{equation}\label{eq:forzamiento}
+    \mathbf{f}(t) = f(t)\,\mathbf{e}_{n^*,m^*,\hat{d}},
+\end{equation}
+
+donde $\mathbf{e}_{n^*,m^*,\hat{d}}$ es el vector canónico con
+$\hat{\mathbf{d}}$ en las posiciones del nodo $(n^*,m^*)$ y cero en el
+resto. Expandiendo la solución en la base modal,
+
+\begin{equation}\label{eq:modal_exp}
+    \mathbf{q}(t) = \sum_{k=1}^{3NM}\eta_k(t)\,\boldsymbol{\phi}_k,
+\end{equation}
+
+y usando la ortogonalidad \eqref{eq:ortog}, el sistema \eqref{eq:sistema}
+se desacopla en $3NM$ osciladores independientes \cite{inman2014,meirovitch2001}:
+
+\begin{equation}\label{eq:eta_k}
+    \ddot{\eta}_k + \omega_k^2\,\eta_k = f_k(t),
+    \qquad
+    f_k(t) = \boldsymbol{\phi}_k^\top\mathbf{f}(t)
+            = f(t)\,\boldsymbol{\phi}_k^\top\mathbf{e}_{n^*,m^*,\hat{d}}.
+\end{equation}
+
+La solución de cada coordenada modal mediante la fórmula de Duhamel es
+
+\begin{equation}\label{eq:duhamel}
+    \eta_k(t)
+    = \eta_k(0)\cos(\omega_k t)
+    + \frac{\dot{\eta}_k(0)}{\omega_k}\sin(\omega_k t)
+    + \frac{1}{\omega_k}
+      \int_0^t f_k(\tau)\sin\!\bigl(\omega_k(t-\tau)\bigr)\,\mathrm{d}\tau,
+\end{equation}
+
+con condiciones iniciales $\eta_k(0) = \boldsymbol{\phi}_k^\top
+\mathbf{M}\mathbf{q}(0)$ y $\dot{\eta}_k(0) = \boldsymbol{\phi}_k^\top
+\mathbf{M}\dot{\mathbf{q}}(0)$. La respuesta temporal completa resulta
+de sustituir \eqref{eq:duhamel} en \eqref{eq:modal_exp}:
+
+\begin{equation}\label{eq:resp_completa}
+    \mathbf{q}(t)
+    = \sum_{k=1}^{3NM}
+      \left[
+          \eta_k(0)\cos(\omega_k t)
+          + \frac{\dot{\eta}_k(0)}{\omega_k}\sin(\omega_k t)
+          + \frac{1}{\omega_k}
+            \int_0^t f_k(\tau)
+            \sin\!\bigl(\omega_k(t-\tau)\bigr)\,\mathrm{d}\tau
+      \right]\boldsymbol{\phi}_k.
+\end{equation}
+
+Para el caso particular de un impulso $f(t)=F_0\,\delta(t)$ con la
+telaraña en reposo ($\mathbf{q}(0)=\dot{\mathbf{q}}(0)=\mathbf{0}$),
+la respuesta impulsional es
+
+\begin{equation}\label{eq:impulsional}
+    \mathbf{q}(t)
+    = F_0\sum_{k=1}^{3NM}
+      \frac{\boldsymbol{\phi}_k^\top\mathbf{e}_{n^*,m^*,\hat{d}}}{\omega_k}
+      \sin(\omega_k t)\,\boldsymbol{\phi}_k.
+\end{equation}
+
+\subsection{Función de transferencia y transmisión entre nodos}
+
+Para cuantificar cuánto de la perturbación aplicada en el nodo fuente
+$(n^*,m^*)$ llega al nodo observador $(n^\dagger,m^\dagger)$, se trabaja
+en el dominio de la frecuencia. Imponiendo $\mathbf{q}(t)=
+\hat{\mathbf{q}}\,e^{i\omega t}$ y $\mathbf{f}(t)=\hat{\mathbf{f}}\,
+e^{i\omega t}$ en \eqref{eq:sistema}:
+
+\begin{equation}\label{eq:freq_domain}
+    \bigl(\mathbf{K} - \omega^2\mathbf{M}\bigr)\hat{\mathbf{q}}
+    = \hat{\mathbf{f}}.
+\end{equation}
+
+La solución define la \emph{matriz de receptancia} \cite{ewins2000,inman2014}:
+
+\begin{equation}\label{eq:receptancia}
+    \mathbf{H}(\omega)
+    = \bigl(\mathbf{K} - \omega^2\mathbf{M}\bigr)^{-1}
+    = \sum_{k=1}^{3NM}
+      \frac{\boldsymbol{\phi}_k\,\boldsymbol{\phi}_k^\top}
+           {\omega_k^2 - \omega^2},
+\end{equation}
+
+donde la segunda igualdad es la representación espectral en términos de
+los modos normales. La \emph{función de transferencia} entre el nodo
+fuente en dirección $\hat{\mathbf{d}}$ y el nodo observador en dirección
+$\hat{\mathbf{s}}$ es el escalar
+
+\begin{equation}\label{eq:transferencia}
+    H_{obs,src}(\omega)
+    = \hat{\mathbf{s}}^\top\mathbf{H}(\omega)\,
+      \mathbf{e}_{n^*,m^*,\hat{d}}
+    = \sum_{k=1}^{3NM}
+      \frac{
+          \bigl(\hat{\mathbf{s}}^\top\boldsymbol{\phi}_k\bigr)
+          \bigl(\boldsymbol{\phi}_k^\top\mathbf{e}_{n^*,m^*,\hat{d}}\bigr)
+      }{\omega_k^2 - \omega^2}.
+\end{equation}
+
+El módulo $|H_{obs,src}(\omega)|$ cuantifica la amplitud de transmisión
+entre los dos nodos a cada frecuencia. Para comparar configuraciones
+geométricas distintas se define el \emph{índice de transmisión integrado}
+en la banda $[\omega_a,\omega_b]$:
+
+\begin{equation}\label{eq:indice}
+    \mathcal{T}_{obs,src}
+    = \int_{\omega_a}^{\omega_b}
+      \lvert H_{obs,src}(\omega)\rvert^2\,\mathrm{d}\omega.
+\end{equation}
+
+Un valor alto de $\mathcal{T}_{obs,src}$ indica que la configuración
+favorece la transmisión en esa banda; uno bajo indica atenuación
+\cite{ewins2000,lott2022,mortimer2016}. La comparación de este índice
+entre distintos valores de $N$, $M$, $\{r_m\}$, $\{K_m,k_m\}$ y
+$\{T^R_m,T^S_m\}$ constituye la herramienta central para responder la
+pregunta del proyecto.
+
+\section{Cronograma}
+\definecolor{az1bg}{RGB}{230,241,251}   % ciclo 1 fila par
+\definecolor{az1alt}{RGB}{238,245,253}  % ciclo 1 fila impar
+\definecolor{az1txt}{RGB}{12,68,124}    % ciclo 1 texto ciclo
+\definecolor{az1bar}{RGB}{24,95,165}    % ciclo 1 barra lateral
+\definecolor{az2bg}{RGB}{234,243,251}   % ciclo 2 fila par
+\definecolor{az2alt}{RGB}{242,248,253}  % ciclo 2 fila impar
+\definecolor{az2txt}{RGB}{24,95,165}    % ciclo 2 texto ciclo
+\definecolor{az2bar}{RGB}{55,138,221}   % ciclo 2 barra lateral
+\definecolor{az3bg}{RGB}{220,234,248}   % ciclo 3 fila par
+\definecolor{az3alt}{RGB}{232,241,250}  % ciclo 3 fila impar
+\definecolor{az3txt}{RGB}{4,44,83}      % ciclo 3 texto ciclo
+\definecolor{az3bar}{RGB}{12,68,124}    % ciclo 3 barra lateral
+\definecolor{cobg}{RGB}{250,236,231}    % cierre fila par
+\definecolor{coalt}{RGB}{250,238,218}   % cierre fila impar
+\definecolor{cotxt}{RGB}{153,60,29}     % cierre texto
+\definecolor{cobar}{RGB}{216,90,48}     % cierre barra lateral
+\definecolor{entbg}{RGB}{252,235,235}   % entregable fondo
+\definecolor{entbdr}{RGB}{226,75,74}    % entregable borde
+\definecolor{enttxt}{RGB}{121,31,31}    % entregable texto
+\definecolor{hdrbg}{RGB}{4,44,83}       % encabezado
+
+\small
+\setlength{\tabcolsep}{0pt}
+\renewcommand{\arraystretch}{1.5}
+
+
+\begin{longtable}{
+    @{}p{3pt}
+    >{\centering\arraybackslash}p{1.1cm}
+    p{3.4cm}
+    p{7.5cm}
+    >{\centering\arraybackslash}p{2.1cm}@{}
+}
+
+% ---- encabezado primera página ----
+\rowcolor{hdrbg}
+& \textcolor{white}{\footnotesize\textbf{Sem.}}
+& \textcolor{white}{\footnotesize\textbf{Ciclo}}
+& \textcolor{white}{\footnotesize\textbf{Actividad}}
+& \textcolor{white}{\footnotesize\textbf{Entregable}} \\
+\endfirsthead
+\rowcolor{hdrbg}
+& \textcolor{white}{\footnotesize\textbf{Sem.}}
+& \textcolor{white}{\footnotesize\textbf{Ciclo}}
+& \textcolor{white}{\footnotesize\textbf{Actividad}}
+& \textcolor{white}{\footnotesize\textbf{Entregable}} \\
+\endhead
+\endfoot
+\endlastfoot
+
+
+\cellcolor{az1bar} & \cellcolor{az1bg}\textcolor{az1bar}{\textbf{1}}
+& \cellcolor{az1bg}\textcolor{az1txt}{\footnotesize Ciclo 1 — Definición}
+& \cellcolor{az1bg}{\footnotesize Revisión bibliográfica sobre telarañas orbiculares, dinámica vibratoria y sistemas mecánicos discretos.}
+& \cellcolor{az1bg} \\
+
+\cellcolor{az1bar} & \cellcolor{az1alt}\textcolor{az1bar}{\textbf{2}}
+& \cellcolor{az1alt}\textcolor{az1txt}{\footnotesize Ciclo 1 — Definición}
+& \cellcolor{az1alt}{\footnotesize Configuración geométrica inicial: distribución de nodos, elementos estructurales y variables de interés.}
+& \cellcolor{az1alt} \\
+
+\cellcolor{az1bar} & \cellcolor{az1bg}\textcolor{az1bar}{\textbf{3}}
+& \cellcolor{az1bg}\textcolor{az1txt}{\footnotesize Ciclo 1 — Modelado}
+& \cellcolor{az1bg}{\footnotesize Representación 3D. Grados de libertad y coordenadas generalizadas $\mathbf{q}$.}
+& \cellcolor{az1bg} \\
+
+\cellcolor{az1bar} & \cellcolor{az1alt}\textcolor{az1bar}{\textbf{4}}
+& \cellcolor{az1alt}\textcolor{az1txt}{\footnotesize Ciclo 1 — Modelado}
+& \cellcolor{az1alt}{\footnotesize Formulación de $T$ y $V$ con pretensión. Derivación de la matriz elemental $\mathbf{k}^e_{ij}$.}
+& \cellcolor{az1alt} \\
+
+\cellcolor{az1bar} & \cellcolor{az1bg}\textcolor{az1bar}{\textbf{5}}
+& \cellcolor{az1bg}\textcolor{az1txt}{\footnotesize Ciclo 1 — Modelado}
+& \cellcolor{az1bg}{\footnotesize Ensamblaje de $\mathbf{M}$ y $\mathbf{K}$; verificación del modelo lagrangiano.}
+& \cellcolor{az1bg} \\
+
+\cellcolor{az1bar} & \cellcolor{az1alt}\textcolor{az1bar}{\textbf{6}}
+& \cellcolor{az1alt}\textcolor{az1txt}{\footnotesize Ciclo 1 — Cierre}
+& \cellcolor{az1alt}{\footnotesize Consolidación del modelo, estrategia de solución y documentación.}
+& \cellcolor{entbg}\textcolor{enttxt}{\footnotesize\textbf{Anteproyecto}} \\[3pt]
+
+
+\cellcolor{az2bar} & \cellcolor{az2bg}\textcolor{az2bar}{\textbf{7}}
+& \cellcolor{az2bg}\textcolor{az2txt}{\footnotesize Ciclo 2 — Caracterización}
+& \cellcolor{az2bg}{\footnotesize Implementación numérica: ensamblaje de $\mathbf{M}$ y $\mathbf{K}$ y verificación de bloques.}
+& \cellcolor{az2bg} \\
+
+\cellcolor{az2bar} & \cellcolor{az2alt}\textcolor{az2bar}{\textbf{8}}
+& \cellcolor{az2alt}\textcolor{az2txt}{\footnotesize Ciclo 2 — Caracterización}
+& \cellcolor{az2alt}{\footnotesize Resolución del problema de valores propios; obtención de $\{\omega_k,\boldsymbol{\phi}_k\}$.}
+& \cellcolor{az2alt} \\
+
+\cellcolor{az2bar} & \cellcolor{az2bg}\textcolor{az2bar}{\textbf{9}}
+& \cellcolor{az2bg}\textcolor{az2txt}{\footnotesize Ciclo 2 — Caracterización}
+& \cellcolor{az2bg}{\footnotesize Clasificación de modos en el plano y transversales; análisis espectral por familia.}
+& \cellcolor{az2bg} \\
+
+\cellcolor{az2bar} & \cellcolor{az2alt}\textcolor{az2bar}{\textbf{10}}
+& \cellcolor{az2alt}\textcolor{az2txt}{\footnotesize Ciclo 2 — Caracterización}
+& \cellcolor{az2alt}{\footnotesize Integral de Duhamel; respuesta temporal ante perturbación impulsional.}
+& \cellcolor{az2alt} \\
+
+\cellcolor{az2bar} & \cellcolor{az2bg}\textcolor{az2bar}{\textbf{11}}
+& \cellcolor{az2bg}\textcolor{az2txt}{\footnotesize Ciclo 2 — Caracterización}
+& \cellcolor{az2bg}{\footnotesize Cálculo de $H_{obs,src}(\omega)$ e índice $\mathcal{T}_{obs,src}$ para la configuración base.}
+& \cellcolor{az2bg} \\
+
+\cellcolor{az2bar} & \cellcolor{az2alt}\textcolor{az2bar}{\textbf{12}}
+& \cellcolor{az2alt}\textcolor{az2txt}{\footnotesize Ciclo 2 — Cierre}
+& \cellcolor{az2alt}{\footnotesize Consolidación de resultados y evaluación del desarrollo del modelo.}
+& \cellcolor{entbg}\textcolor{enttxt}{\footnotesize\textbf{Informe de avance}} \\[3pt]
+
+
+\cellcolor{az3bar} & \cellcolor{az3bg}\textcolor{az3bar}{\textbf{13}}
+& \cellcolor{az3bg}\textcolor{az3txt}{\footnotesize Ciclo 3 — Simulación}
+& \cellcolor{az3bg}{\footnotesize Definición de configuraciones geométricas para estudio comparativo (variación de $N$, $M$, $r_m$).}
+& \cellcolor{az3bg} \\
+
+\cellcolor{az3bar} & \cellcolor{az3alt}\textcolor{az3bar}{\textbf{14}}
+& \cellcolor{az3alt}\textcolor{az3txt}{\footnotesize Ciclo 3 — Simulación}
+& \cellcolor{az3alt}{\footnotesize Implementación de cada configuración y definición de casos de perturbación mecánica.}
+& \cellcolor{az3alt} \\
+
+\cellcolor{az3bar} & \cellcolor{az3bg}\textcolor{az3bar}{\textbf{15}}
+& \cellcolor{az3bg}\textcolor{az3txt}{\footnotesize Ciclo 3 — Simulación}
+& \cellcolor{az3bg}{\footnotesize Simulación numérica de la respuesta vibratoria y cálculo de $\mathcal{T}_{obs,src}$ por configuración.}
+& \cellcolor{az3bg} \\
+
+\cellcolor{az3bar} & \cellcolor{az3alt}\textcolor{az3bar}{\textbf{16}}
+& \cellcolor{az3alt}\textcolor{az3txt}{\footnotesize Ciclo 3 — Simulación}
+& \cellcolor{az3alt}{\footnotesize Comparación de $\{\omega_k\}$, $\{\boldsymbol{\phi}_k\}$ y $H_{obs,src}(\omega)$ entre configuraciones.}
+& \cellcolor{az3alt} \\[3pt]
+
+\cellcolor{cobar} & \cellcolor{cobg}\textcolor{cobar}{\textbf{17}}
+& \cellcolor{cobg}\textcolor{cotxt}{\footnotesize Cierre del proyecto}
+& \cellcolor{cobg}{\footnotesize Análisis global de resultados, influencia de la geometría y elaboración de conclusiones.}
+& \cellcolor{entbg}\textcolor{enttxt}{\footnotesize\textbf{Informe final}} \\
+
+\cellcolor{cobar} & \cellcolor{coalt}\textcolor{cobar}{\textbf{18}}
+& \cellcolor{coalt}\textcolor{cotxt}{\footnotesize Cierre del proyecto}
+& \cellcolor{coalt}{\footnotesize Artículo científico y preparación de la sustentación.}
+& \cellcolor{entbg}\textcolor{enttxt}{\footnotesize\textbf{Sustentación}} \\
+
+\end{longtable}
+
+
+\printbibliography
+\end{document}

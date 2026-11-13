@@ -1,0 +1,65 @@
+1) Construcción de la configuración base
+   1401 nodos, 2772 hilos, 4119 GDL (0.20 s)
+2) Análisis modal
+
+================ ANÁLISIS MODAL ================
+Acoplamiento X/Y-Z: abs=0.000e+00, rel=0.000e+00
+
+TRANSVERSALES Z — 1373 modos calculados
+Modo   1:      2.55439 Hz   p= 0
+Modo   2:    114.78687 Hz   p= 0
+Modo   3:    130.26463 Hz   p= 1
+Modo   4:    130.26463 Hz   p= 1
+Modo   5:    162.00306 Hz   p= 2
+Modo   6:    162.00306 Hz   p= 2
+Modo   7:    195.78318 Hz   p= 3
+Modo   8:    195.78318 Hz   p= 3
+Verificación: residuo=6.043e-11, ortog(M)=4.441e-16, ortog(K)=4.080e-14
+
+EN EL PLANO X-Y — 24 modos calculados
+Modo   1:     65.57654 Hz   p= 1
+Modo   2:     65.57654 Hz   p= 1
+Modo   3:    130.26463 Hz   p= 0
+Modo   4:    146.79699 Hz   p= 1
+Modo   5:    146.79699 Hz   p= 1
+Modo   6:    181.01302 Hz   p= 2
+Modo   7:    181.01302 Hz   p= 2
+Modo   8:    218.33743 Hz   p= 3
+Verificación: residuo=8.256e-10, ortog(M)=4.707e-16, ortog(K)=8.243e-11
+=================================================
+
+   Tiempo: 1.95 s
+3) Respuesta temporal y función de transferencia
+   Fuente: (0, 20) a 8.00 cm
+   Tiempo: 0.24 s
+4) Comparación de configuraciones geométricas
+   Tiempo: 18.70 s
+5) Pruebas de validación
+
+================ VALIDACIÓN ================
+element_stiffness             : OK
+    relative_error: 0.000e+00
+modal_vs_direct               : OK
+    relative_error: 1.255e-10
+energy_and_completeness       : OK
+    initial_velocity_relative_error: 2.465e-15
+    energy_relative_variation: 0.000e+00
+duhamel_impulse               : OK
+    relative_error: 5.034e-16
+transfer_function             : OK
+    static_limit_relative_error: 6.709e-16
+    reciprocity_relative_error: 1.073e-16
+frequency_grid_convergence    : OK
+    relative_change: 2.346e-05
+geometry_base_reproduction    : OK
+    relative_error_f1_NM: 0.000e+00
+    relative_error_f1_spacing: 6.042e-11
+RESULTADO GLOBAL: OK
+============================================
+
+6) Guardando resultados y figuras
+Proceso finalizado correctamente.
+Figuras   -> /mnt/data/telarana_codigo_final/figuras
+Resultados-> /mnt/data/telarana_codigo_final/resultados
+Validación-> /mnt/data/telarana_codigo_final/validacion
+Excel     -> /mnt/data/telarana_codigo_final/resultados/resultados_finales.xlsx

@@ -1,0 +1,16 @@
+{
+    // Ver el PDF en una pestaña de VS Code, al lado del código
+    "latex-workshop.view.pdf.viewer": "tab",
+    // Compilar al guardar y saltar al lugar del cursor en el PDF después de compilar
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.synctex.afterBuild.enabled": true,
+    // En el PDF: Ctrl + clic lleva a la línea correspondiente del código
+    "latex-workshop.view.pdf.internal.synctex.keybinding": "ctrl-click",
+    // Vista previa de ecuaciones al pasar el mouse sobre ellas
+    "latex-workshop.hover.preview.enabled": true,
+    // Código más legible: las líneas largas se ajustan a la ventana
+    "[latex]": {
+        "editor.wordWrap": "on",
+        "editor.wrappingIndent": "same"
+    }
+}
